@@ -22,24 +22,29 @@ Pour utiliser notre programme, vous devez avoir MySQL installé dans votre machi
     ![image2](img/image2.png)
 
 2. Mettez le fichier zip dans votre répertoire choisi et puis le dézippé.
+
     ![image3](img/image3.png)
 
     Entrez dans son répertoire:
+	
     ![image4](img/image4.png)
 
 3. Ouvrez le cmd de Windows:
 
     - allez dans le sous-répertoire `bin` de mysql et puis lancez l'installation avec commande `mysqld -install`
+	
     ![image5](img/image5.png)
 
         **Si vous rencontrez l'erreur comme "Install/Remove of the Service Denied!", c'est un problème de droit, rouvrir la fenêtre cmd comme administrator et puis vous aurez pas de problème.**
 
         Installation avec succès:
+		
         ![image6](img/image6.png)
 
 #### Configuration de MySQL
 
 Toujours dans cmd, dans `mysql-8.0.23-winx64\bin`, lancez `mysqld -initialize`, cette commande va créer un sous-répertoire `data` dans `mysql-8.0.23-winx64`, entrez dans ce sous-répertoire et trouver un fichier avec extension `.err`, qui contient un mot de passe temporaire pour la première utilisation de MySQL. Ouvrez-le avec votre éditeur et puis trouver le mot de passe.
+
 ![image7](img/image7.png)
 ![image8](img/image8.png)
 ![image9](img/image9.png)
@@ -58,14 +63,17 @@ port=3306
 ![image10](img/image10.png)
 
 Sauvegardez-le, et puis on peut démarrer le service `mysql` avec `net start mysql` :
+
 ![image11](img/image11.png)
 
 Tapez `mysql -u root -p` pour login (comme utilisateur `root`), utilisez le mot de passe qu'on vient de trouver.
 
 Login avec succès:
+
 ![image12](img/image12.png)
 
 Ensuite, changez le mot de passe avec `ALTER USER root@localhost IDENTIFIED BY 'new_password'`
+
 ![image13](img/image13.png)
 
 **Attention: pour utiliser directement le fichier properties dans notre programme, il vaut mieux garder l'user `root` et changer le mot de passe à `ljy`. Si vous utilisez d'autre configuration, il faut aussi changer ces infos dans `projetBDR/resources/properties`**
