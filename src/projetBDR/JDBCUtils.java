@@ -1,9 +1,6 @@
 package projetBDR;
 
-
-import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.*;
 import java.util.Properties;
 
@@ -26,26 +23,17 @@ public class JDBCUtils {
      */
     static {
         try {
-            //obtenir le chemin vers fichier db.properties
-            ClassLoader classLoader = JDBCUtils.class.getClassLoader();
-            URL res = classLoader.getResource("projetBDR/resources/db.properties");
-            String path = null;
-            if (res != null) {
-                path = res.getPath();
-            }
-
-            // instancier objet properties et importer le contenu du fichier
+        	// instancier objet properties et importer le contenu du fichier
+            ClassLoader classLoader = JDBCUtils.class.getClassLoader();            
             Properties pro = new Properties();
-            if (path != null) {
-                pro.load(new FileReader(path));
-            }
+            pro.load(classLoader.getResourceAsStream("db.properties"));
 
             // obtenir les valeurs
             String JDBC_DRIVER = pro.getProperty("JDBC_DRIVER");
             DB_URL = pro.getProperty("DB_URL");
             USER = pro.getProperty("USER");
             PASS = pro.getProperty("PASS");
-
+            
             // inscrire le driver
             Class.forName(JDBC_DRIVER);
 

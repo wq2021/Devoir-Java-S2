@@ -1,6 +1,7 @@
 package projetBDR;
 
 import projetBDR.enregistrement.Enregistrement;
+import projetBDR.enregistrement.IllegalEntryException;
 import projetBDR.enregistrement.Localisation;
 import projetBDR.enregistrement.Production;
 
@@ -65,7 +66,7 @@ public class CSVReader {
             }
             productions = new ArrayList<>(productionsDistinct);
 
-        } catch (IOException e) {
+        } catch (IOException | IllegalEntryException e) {
             e.printStackTrace();
         }
     }

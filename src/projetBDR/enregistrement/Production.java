@@ -22,7 +22,7 @@ public class Production extends Enregistrement{
      * @param producteur String
      * @param realisateur String
      */
-    public Production(String titre, int anneeTournage, String typeTournage, String producteur, String realisateur) {
+    public Production(String titre, int anneeTournage, String typeTournage, String producteur, String realisateur) throws IllegalEntryException {
         this.titre = titre;
         setAnneeTournage(anneeTournage);
         this.typeTournage = typeTournage;
@@ -82,9 +82,9 @@ public class Production extends Enregistrement{
      * est dans le bon cadre (entre 1895 et 2050)
      * @param anneeTournage  type int
      */
-    private void setAnneeTournage(int anneeTournage) {
+    private void setAnneeTournage(int anneeTournage) throws IllegalEntryException {
         if ( anneeTournage > 2050 || anneeTournage < 1895 ){
-            throw new IllegalArgumentException("L'année de tournage illégale !");
+            throw new IllegalEntryException("L'année de tournage illégale !");
         }
         this.anneeTournage = anneeTournage;
     }

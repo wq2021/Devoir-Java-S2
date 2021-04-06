@@ -34,7 +34,7 @@ public class Localisation extends Enregistrement{
      * @param coordoY  type double, coordonnées géographiques
      *
      */
-    public Localisation(String identifiantLieu, String titre, String locationScene, int codePostal, String dateDebut, String dateFin, double coordoX, double coordoY) {
+    public Localisation(String identifiantLieu, String titre, String locationScene, int codePostal, String dateDebut, String dateFin, double coordoX, double coordoY) throws IllegalEntryException {
         setIdentifiantLieu(identifiantLieu);
         this.titre = titre;
         this.locationScene = locationScene;
@@ -86,11 +86,11 @@ public class Localisation extends Enregistrement{
      * correspond au format identifiant lieu (regex).
      * @param identifiantLieu String
      */
-    private void setIdentifiantLieu(String identifiantLieu) {
+    private void setIdentifiantLieu(String identifiantLieu) throws IllegalEntryException {
         Pattern pattern = Pattern.compile("[0-9]{4}-[0-9]+");
         Matcher matcher = pattern.matcher(identifiantLieu);
         if (!matcher.matches()){
-            throw new IllegalArgumentException("identifiant du lieu illégal (format demandé: annéeTournage-numéro)");
+            throw new IllegalEntryException("identifiant du lieu illégal (format demandé: annéeTournage-numéro)");
         }
         this.identifiantLieu = identifiantLieu;
     }
@@ -100,9 +100,9 @@ public class Localisation extends Enregistrement{
      * correspond au format code postal (5 chiffres).
      * @param codePostal int
      */
-    private void setCodePostal(int codePostal) {
+    private void setCodePostal(int codePostal) throws IllegalEntryException {
         if ( String.valueOf(codePostal).length()!= 5){
-            throw new IllegalArgumentException("Code Postal doit être une séquence de 5 chiffres");
+            throw new IllegalEntryException("Code Postal doit être une séquence de 5 chiffres");
         }
         this.codePostal = codePostal;
     }
@@ -113,9 +113,9 @@ public class Localisation extends Enregistrement{
      * correspond au format date.
      * @param dateDebut String
      */
-    private void setDateDebut(String dateDebut) {
+    private void setDateDebut(String dateDebut) throws IllegalEntryException {
         if (!validateDate(dateDebut)){
-            throw new IllegalArgumentException("Format de date incorrecte ! Format demandé: aaaa-mm-jj");
+            throw new IllegalEntryException("Format de date incorrecte ! Format demandé: aaaa-mm-jj");
         }
         this.dateDebut = dateDebut;
     }
@@ -125,9 +125,9 @@ public class Localisation extends Enregistrement{
      * correspond au format date.
      * @param dateFin String
      */
-    private void setDateFin(String dateFin) {
+    private void setDateFin(String dateFin) throws IllegalEntryException {
         if (!validateDate(dateFin)){
-            throw new IllegalArgumentException("Format de date incorrecte ! Format demandé: aaaa-mm-jj");
+            throw new IllegalEntryException("Format de date incorrecte ! Format demandé: aaaa-mm-jj");
         }
         this.dateFin = dateFin;
     }

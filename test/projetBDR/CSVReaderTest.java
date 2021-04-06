@@ -13,7 +13,8 @@ public class CSVReaderTest {
     @Test
     public void testLoadCSVFile() {
         //GIVEN
-        String chemin = "./src/projetBDR/resources/lieux-de-tournage-a-paris.csv";
+    	// à changer le chemin absolu selon votre propre environnement
+        String chemin = "C:\\Users\\liujianying\\Desktop\\java\\lieux-de-tournage-a-paris.csv";
 
         //WHEN
         CSVReader.loadCSVFile(chemin);

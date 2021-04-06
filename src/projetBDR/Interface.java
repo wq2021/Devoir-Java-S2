@@ -1,5 +1,6 @@
 package projetBDR;
 
+import projetBDR.enregistrement.IllegalEntryException;
 import projetBDR.enregistrement.Localisation;
 import projetBDR.enregistrement.Production;
 
@@ -57,8 +58,8 @@ public class Interface {
                 case "M":
                     String filmTitre = scanAnswer("Entrez le titre de la production: ");
                     String choixModifier = scanAnswer("Quelle information désirez-vous modifier ? Taper 1 pour une localisation, Taper 2 pour la production.");
-                    boolean flag = managerDB.searchInfo(filmTitre);
-                    if(choixModifier.equals("1") && flag){
+//                    boolean flag = managerDB.checkFilmExistence(filmTitre);
+                    if(choixModifier.equals("1") && managerDB.searchInfo(filmTitre)){
                         System.out.println("Maintenant vous allez modifier une information pour la localisation.");
                         String idLieu = scanAnswer("Entrez l'identifiant du lieu à modifier: ");
 
@@ -66,7 +67,7 @@ public class Interface {
                         String newLocalisation = scanAnswer("Entrez la nouvelle localisation de la scène pour cet identifiant: ");
                         managerDB.modifierOneTupleInTable("LieuxTournage", idLieu, newLocalisation);
                     }
-                    else if (choixModifier.equals("2") && flag) {
+                    else if (choixModifier.equals("2") && managerDB.checkFilmExistence(filmTitre)) {
                         System.out.println("Maintenant vous allez modifier une information pour la production.");
 
                         // Modification 2 : réalisateur de la production
@@ -127,7 +128,7 @@ public class Interface {
             boolean flag = managerDB.insertOneTupleInTable(production);
             if (flag)
                 System.out.println("L'oeuvre \"" + production.getTitre() + "\" est bien ajoutée.");
-        } catch (IllegalArgumentException e){
+        } catch (IllegalEntryException e){
             System.out.println("Entrée illégale:" + e.getMessage());
             System.out.println("Recommencez : ");
             addNewProduction(managerDB);
@@ -158,7 +159,7 @@ public class Interface {
                 Localisation localisation = new Localisation(identifiant, titre, locationScene, code, dateDebut, dateFin, cox, coy);
                 boolean flag = managerDB.insertOneTupleInTable(localisation);
                 if (flag)
-                    System.out.println("La localisation" + localisation.getTitre() + "est ajouté dans la base");
+                    System.out.println("Cette localisation de Production " + localisation.getTitre() + " est ajouté dans la base");
             } else {
                 System.out.println(titre + "n'existe pas dans le système, ajoutez-le d'abord ? (Y/N)");
                 if (QUESTION.nextLine().equals("Y")){
@@ -166,7 +167,7 @@ public class Interface {
                     addNewLocation(managerDB);
                 }
             }
-        } catch (IllegalArgumentException e){
+        } catch (IllegalEntryException e){
             System.out.println("Entrée illégale:" + e.getMessage() + " \nRecommencez : ");
             addNewLocation(managerDB);
         }

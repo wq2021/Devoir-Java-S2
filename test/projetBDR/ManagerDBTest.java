@@ -11,6 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import projetBDR.enregistrement.IllegalEntryException;
 import projetBDR.enregistrement.Localisation;
 import projetBDR.enregistrement.Production;
 
@@ -48,7 +49,7 @@ class ManagerDBTest {
 	void testPrepareDBwithCSV() throws SQLException {
 		//GIVEN
 		// à changer avec votre chemin vers le fichier csv
-		String chemin = "./src/projetBDR/resources/lieux-de-tournage-a-paris.csv";
+		String chemin = "C:\\Users\\liujianying\\Desktop\\java\\lieux-de-tournage-a-paris.csv";
 		statement.executeUpdate("drop table LieuxTournage;");
 		statement.executeUpdate("drop table Cinema;");
 		
@@ -72,7 +73,7 @@ class ManagerDBTest {
 	}
 
 	@Test
-	void testInsertOneTupleInTable() {
+	void testInsertOneTupleInTable() throws IllegalEntryException {
 		//GIVEN
 		Production prod = new Production("Daft Punk Unchained", 2015, "Film" ,"Patrice Gellé, Jean-Louis Blot", "Hervé Martin-Delpierre");
 		
@@ -84,7 +85,7 @@ class ManagerDBTest {
 	}
 
 	@Test
-	void testDeleteOneTupleByPrimaryKey(){
+	void testDeleteOneTupleByPrimaryKey() throws IllegalEntryException {
 		//GIVEN
 		Production prod = new Production("Daft Punk Unchained", 2015, "Film" ,"Patrice Gellé, Jean-Louis Blot", "Hervé Martin-Delpierre");
 		String nomCle = "titre";
@@ -100,7 +101,7 @@ class ManagerDBTest {
 	}
 
 	@Test
-	void testModifierOneTupleInTable() throws SQLException {
+	void testModifierOneTupleInTable() throws SQLException, IllegalEntryException {
 		//GIVEN
 		Production prod = new Production("Daft Punk Unchained", 2015, "Film" ,"Patrice Gellé, Jean-Louis Blot", "Hervé Martin-Delpierre");
 		String nomTable = "Cinema";
@@ -120,7 +121,7 @@ class ManagerDBTest {
 	}
 
 	@Test
-	void testCheckFilmExistence() {
+	void testCheckFilmExistence() throws IllegalEntryException {
 		//GIVEN
 		Production prod = new Production("Daft Punk Unchained", 2015, "Film" ,"Patrice Gellé, Jean-Louis Blot", "Hervé Martin-Delpierre");
 		mDB.insertOneTupleInTable(prod);
@@ -133,7 +134,7 @@ class ManagerDBTest {
 	}
 
 	@Test
-	void testSearchInfoString(){
+	void testSearchInfoString() throws IllegalEntryException {
 		// GIVEN
 
 		Production prod = new Production("Daft Punk Unchained", 2015, "Film" ,"Patrice Gellé, Jean-Louis Blot", "Hervé Martin-Delpierre");
@@ -151,7 +152,7 @@ class ManagerDBTest {
 	}
 
 	@Test
-	void testSearchInfo() {
+	void testSearchInfo() throws IllegalEntryException {
 		// GIVEN
 		Production prod = new Production("Daft Punk Unchained", 2015, "Film" ,"Patrice Gellé, Jean-Louis Blot", "Hervé Martin-Delpierre");
 		Localisation local = new Localisation("2015-5","Daft Punk Unchained", "rue de Lille, 75005, Paris", 75005 ,"2015-01-02","2015-05-20", 3.3333, 23.4444);
@@ -169,3 +170,4 @@ class ManagerDBTest {
 	}
 
 }
+
