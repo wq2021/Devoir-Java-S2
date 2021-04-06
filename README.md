@@ -4,11 +4,21 @@ Membres du groupe : Jianying Liu, Qi Wang
 
 ## Infomations sur le projet
 
-Pour lancer le programme:
+**Pour lancer le programme dans eclipse:**
 
-Lancer `Main` avec `path/vers/le/fichierCSV` : va initialiser (créer des tables) et remplir automatiquement la base avec donées dans le fichier csv ;
+Lancer `Main` avec argument `path/vers/le/fichierCSV` : va initialiser (créer des tables) et remplir automatiquement la base avec donées dans le fichier csv ;
 
-Lancer `Main` seulement : va entrer directement dans la stade de création.
+Lancer `Main` sans argument : va entrer directement dans la stade de création.
+
+**Pour lancer le jar:**
+
+Lancer les lignes de commande suivante dans terminal :
+
+`java -jar projet-jdbc-jianying-qi.jar chemin/vers/lieux-de-tournage-a-paris.csv`
+
+ou
+
+`java -jar projet-jdbc-jianying-qi.jar`
 
 ## Configuration de Base de données avant l'utilisation (pour Windows10)
 
