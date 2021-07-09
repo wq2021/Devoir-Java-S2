@@ -1,4 +1,4 @@
-# Projet Java : Interaction avec la base de données relationnelles
+# M2 TAL - Projet Programmation Objet (Java) : Interaction avec la base de données relationnelles
 
 Membres du groupe : Jianying Liu, Qi Wang
 
